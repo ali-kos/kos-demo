@@ -1,0 +1,82 @@
+body #main {
+  position: relative;
+  min-height: 100vh;
+  min-width: 1024px;
+  background-color: #f6f6f6;
+  &>.ant-spin-nested-loading>.ant-spin-container {
+    height: 100vh;
+  }
+}
+
+@headerHeight: 130px;
+@borderColor: #e8e8e8;
+.app-layout {
+  &>.app-layout-header {
+    height: 64px;
+    line-height: 64px;
+    margin: 0;
+    .app-logo {
+      height: 64px;
+      width: 64px;
+      float: left;
+      padding: 10px;
+      .icon {
+        background-color: #E94720;
+        border-radius: 50%;
+        line-height: 44px;
+        height: 44px;
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+    .app-name {
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      float: left;
+      height: 100%;
+      margin: 0 40px 0 0;
+      padding: 0;
+      font-size: 20px;
+      a {
+        color: #fff;
+      }
+    }
+    .app-menus {
+      float: left;
+      .ant-menu-horizontal {
+        line-height: 64px;
+      }
+    }
+  }
+  &>.app-layout-content {
+    min-height: calc(~"100vh" - @headerHeight);
+    padding: 40px;
+    &>.wrap {
+      padding: 20px;
+      overflow: hidden;
+      .app-page {
+        .app-page-title {
+          font-size: 18px;
+          padding: 0 10px;
+          margin-bottom: 20px;
+          .toolbar {
+            float: right;
+          }
+        }
+        .app-page-content {
+          padding: 20px 10px 10px;
+          background-color: #fff;
+        }
+      }
+    }
+  }
+  &>.app-layout-footer {
+    text-align: center;
+    padding: 30px;
+    border-top: solid 1px @borderColor;
+    background-color: #fff;
+  }
+}

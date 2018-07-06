@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "kos-deom",
   "version": "1.0.0",
   "scripts": {
     "dev": "webpack-dev-server --open --mode development",

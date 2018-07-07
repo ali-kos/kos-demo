@@ -1,4 +1,4 @@
-import KOS from 'kos-core';
+import kos from 'kos-core';
 
 import LayoutSPA from './src/layout-spa';
 import LayoutMPA from './src/layout';

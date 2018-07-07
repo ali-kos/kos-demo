@@ -1,5 +1,5 @@
 import React from 'react';
-import KOS from 'kos-core';
+import kos from 'kos-core';
 import { formMiddleware } from 'kos-form';
 
 import loggerMiddleware from 'redux-logger';
@@ -7,8 +7,8 @@ import loggerMiddleware from 'redux-logger';
 
 import Layout from './layout/'
 
-KOS.use(loggerMiddleware);
-KOS.use(formMiddleware);
+kos.use(loggerMiddleware);
+kos.use(formMiddleware);
 
 
 import pages from './pages/';
@@ -17,4 +17,4 @@ const LayoutApp = Layout({
   pages
 });
 
-KOS.start(LayoutApp);
+kos.start(LayoutApp);

@@ -56,8 +56,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
-        exclude: /node_modules/,
-        // include: /node_modules\/kos-core|node_modules\/kos-form/,
+        exclude: '/node_modules/',
       },
       {
         test: /\.(css|less)$/,
@@ -100,14 +99,10 @@ module.exports = {
     extensions: ['.js', ".css", ".jsx", '.json', '.less', '.scss'],
     modules: ['node_modules', 'antd/dist'],
     alias: {
-      'kos-core': path.resolve('./node_modules/kos-core/lib/'),
-      'kos-form': path.resolve('./node_modules/kos-form/lib/'),
       'lib': path.resolve('./lib')
     }
   },
   externals: {
-    'tag-schema': 'MYREPORTS_TAG_SCHEMA',
-    'snippet-category': 'MYREPORTS_SNIPPET_CATEGORY',
     "react": "React",
     "react-dom": "ReactDOM"
   },

@@ -1,8 +1,8 @@
 import React from 'react';
-import KOS from 'kos-core';
+import kos from 'kos-core';
 import model from './model';
 
-@KOS.Wrapper({ model, authLoad: false })
+@kos.Wrapper({ model, authLoad: false })
 class Auth extends React.PureComponent {
   componentWillMount() {
     const { page = {}, dispatch } = this.props;

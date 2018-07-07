@@ -1,6 +1,5 @@
 import React from 'react';
 import kos from 'kos-core';
-import { Form, Field, ToolbarField } from 'lib/kos-form-antd';
 import model from './model';
 
 import { Input, Button } from 'antd';

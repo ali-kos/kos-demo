@@ -1,7 +1,6 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
 const { SubMenu } = Menu;
-import createHistory from 'history/createHashHistory';
 
 
 export default class Nav extends React.PureComponent {

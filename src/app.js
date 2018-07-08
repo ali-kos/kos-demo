@@ -1,20 +1,15 @@
 import React from 'react';
 import kos from 'kos-core';
-import { formMiddleware } from 'kos-form';
 
+import { formMiddleware } from 'kos-form';
 import loggerMiddleware from 'redux-logger';
 
-
-import Layout from './layout/'
+import { AppCreator } from './layout-n/app';
+import pages from './pages/';
 
 kos.use(loggerMiddleware);
 kos.use(formMiddleware);
 
+const App = AppCreator(pages);
 
-import pages from './pages/';
-
-const LayoutApp = Layout({
-  pages
-});
-
-kos.start(LayoutApp);
+kos.start(App);

@@ -1,27 +1,34 @@
+import React from 'react';
 import kos from 'kos-core';
-
-import LayoutSPA from './src/layout-spa';
-import LayoutMPA from './src/layout';
-
 import model from './model';
+
+import DefaultLayout from './src/layout-default';
+import LeftmenuLayout from './src/layout-leftmenu';
 
 import './style.less';
 
 
-const createLayout = ({ pages, PageComponent }) => {
-  if (pages) {
-    return LayoutSPA(pages);
+const LayoutMap = {
+  'leftmenu': LeftmenuLayout
+};
+
+
+@kos.Wrapper({ model })
+class Layout extends React.PureComponent {
+  render() {
+    const { page, history } = this.props;
+    const { layout, Component, title } = page;
+
+    // 更新title
+    document.title = title;
+
+    // 此处根据layout获取LC
+    const LC = LayoutMap[layout] || DefaultLayout
+
+    return <LC {...this.props}>
+      <Component page={page} history={history} />
+    </LC>
   }
-
-  return LayoutMPA(PageComponent);
 }
 
-
-export default ({ pages, PageComponent }) => {
-  const Layout = createLayout({
-    pages,
-    PageComponent
-  });
-
-  return KOS.Wrapper({ model })(Layout);
-}
+export default Layout;

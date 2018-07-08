@@ -7,8 +7,8 @@ export default class Header extends React.PureComponent {
   render() {
     return <div className="wrapper">
       <Row>
-        <div className="app-logo"><div className="icon">MP</div></div>
-        <h1 className="app-name"><Link to="/">MyPage</Link></h1>
+        <div className="app-logo"><div className="icon">kos</div></div>
+        <h1 className="app-name"><Link to="/">demo</Link></h1>
         <div className="app-menus">
           <Nav {...this.props} />
         </div>

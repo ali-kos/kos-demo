@@ -58,10 +58,11 @@ page/index.js文件导出一个页面的配置数组，应用后续构建为多�
 ```js
 import Layout from 'layout';
 import kos from 'kos-core';
+import CountComponent from './pages/count/';
 
 const page={
   title:'test',
-  Component:TeatComponent,
+  Component:CountComponent,
   layout:'',
 }
 

@@ -13,7 +13,7 @@ const NotMatchPage = {
   history
 };
 
-export const SPApp = class extends React.PureComponent {
+class SPApp extends React.PureComponent {
   render() {
     const { pages } = this.props;
 
@@ -33,14 +33,8 @@ export const SPApp = class extends React.PureComponent {
   }
 }
 
-export const MPApp = class extends React.PureComponent {
-  render() {
-    const { page } = this.props;
-    return <Layout page={page} />;
-  }
-}
 
-export const AppCreator = (pages) => {
+export default (pages) => {
   return class App extends React.PureComponent {
     render() {
       return <SPApp pages={pages} />

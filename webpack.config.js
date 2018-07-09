@@ -12,7 +12,7 @@ module.exports = {
     // new MonacoWebpackPlugin({
     //   languages: ['javascript'],
     // }),
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['docs']),
     new HtmlWebpackPlugin({
       template: './index.html',
       title: 'test',
@@ -30,7 +30,7 @@ module.exports = {
   // devtool: 'inline-source-map',
   devServer: {
     disableHostCheck: false,
-    contentBase: path.join(__dirname, "dist"), //静态文件根目录
+    contentBase: path.join(__dirname, "docs"), //静态文件根目录
     port: 9090, // 端口
     host: 'localhost',
     overlay: true,
@@ -48,7 +48,7 @@ module.exports = {
   },
   output: {
     filename: '[name]-[hash].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'docs'),
     publicPath: '/'
   },
   module: {

@@ -5,8 +5,9 @@ import FormValidate from './form-validate/';
 export default [{
   path: '/',
   Component: Home,
-  title: 'Kos Demo Center'
-},{
+  title: 'Kos Demo Center',
+  layout: 'leftmenu',
+}, {
   path: '/form-validate',
   Component: FormValidate,
   layout: 'leftmenu',

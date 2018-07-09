@@ -1,11 +1,16 @@
-const Menus = [{
-  title: 'Countter',
-  // key: 'home',
-  path: '/countter'
+export const HeaderMenus = [{
+  title: 'docs',
+  href: 'https://doc.kos.koubei.com',
 }, {
-  title: '应用管理',
-  // key: 'app-mgr',
-  path: '/project/add'
+  title: 'kos github',
+  href: 'https://github.com/ali-kos',
 }];
 
-export default Menus;
+
+export const LeftMenus = [{
+  title: 'Countter',
+  path: '/countter'
+}, {
+  title: '表单校验',
+  path: '/form-validate'
+}];

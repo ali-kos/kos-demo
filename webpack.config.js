@@ -56,7 +56,8 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
-        exclude: '/node_modules/',
+        // exclude: /node_modules|kos-form\/lib|kos\/lib/,
+        exclude: /node_modules/,
       },
       {
         test: /\.(css|less)$/,
@@ -99,7 +100,9 @@ module.exports = {
     extensions: ['.js', ".css", ".jsx", '.json', '.less', '.scss'],
     modules: ['node_modules', 'antd/dist'],
     alias: {
-      'lib': path.resolve('./lib')
+      'lib': path.resolve('./lib'),
+      // 'kos-core': path.resolve('../kos/lib/index.es.js'),
+      // 'kos-form': path.resolve('../kos-form/lib/index.es.js')
     }
   },
   externals: {

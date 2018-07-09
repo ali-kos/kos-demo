@@ -1,68 +1,89 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
 const { SubMenu } = Menu;
-
+import PropTypes from 'prop-types';
 
 export default class Nav extends React.PureComponent {
+  static propTypes = {
+    mode: PropTypes.string,
+    theme: PropTypes.string,
+    menus: PropTypes.array,
+    history: PropTypes.object,
+    className: PropTypes.string,
+    selectedKeys: PropTypes.array
+  };
+  static defaultProps = {
+    mode: 'horizontal',
+    theme: 'dark',
+    menus: [],
+    className: 'app-layout-menu',
+    selectedKeys: []
+  };
+  constructor(props) {
+    super(props);
+
+    this.menuKeys = {};
+  }
   handleMenuSelect(e) {
-    const { key } = e;
+    const { key, selectedKeys } = e;
+    const { history, onSelect } = this.props;
+
+    onSelect && onSelect(selectedKeys);
 
     if (!key) {
       return;
     }
-    const { history } = this.props;
-
-    if (history.location.pathname == key) {
+    const menu = this.menuKeys[key];
+    if (!menu || menu.href) {
       return;
     }
-    this.props.dispatch({
-      type: 'setState',
-      payload: {
-        currentMenu: key
-      }
-    });
 
-    this.props.history.replace(key);
-  }
-  componentDidMount() {
-    const { history, dispatch } = this.props;
 
-    history && dispatch({
-      type: 'setState',
-      payload: {
-        currentMenu: history.location.pathname
+    if (history) {
+      if (history.location.pathname == key) {
+        return;
       }
-    });
+      history && history.push(key);
+    }
+
   }
   renderMenuItem(menu) {
-    const { title, icon } = menu;
-    return <span>
+    const { history } = this.props;
+    const { title, icon, target = "" } = menu;
+    const href = history ? menu.href : menu.path;
+
+    return href ? (<a href={href} target={target}>
       {icon ? <Icon type={icon} /> : null}
       {title}
-    </span>
+    </a>) : (<span>
+      {icon ? <Icon type={icon} /> : null}
+      {title}
+    </span>);
   }
   renderMenus(menus = []) {
     return menus.map((menu) => {
-      const { path, children = [], disabled } = menu;
+      const { path, href, children = [], disabled } = menu;
+      const menuKey = path || href;
+
+      this.menuKeys[menuKey] = menu;
 
       if (children.length) {
-        return <SubMenu key={path} disabled={disabled} title={this.renderMenuItem(menu)}>
+        return <SubMenu key={menuKey} disabled={disabled} title={this.renderMenuItem(menu)}>
           {this.renderMenus(children)}
         </SubMenu>
       }
-      return <Menu.Item key={path} disabled={disabled}>{this.renderMenuItem(menu)}</Menu.Item>
-
+      return <Menu.Item key={menuKey} disabled={disabled}>{this.renderMenuItem(menu)}</Menu.Item>
     });
   }
   render() {
-    const { menus, currentMenu, menuDefaultOpenKeys } = this.props;
+    const { menus, mode, theme, className, selectedKeys } = this.props;
 
+    this.menuKeys = {};
     return <Menu
-      mode="horizontal"
-      className="app-layout-menu" theme="dark"
-      selectedKeys={[currentMenu]}
-      defaultOpenKeys={menuDefaultOpenKeys}
-      onClick={(e) => this.handleMenuSelect(e)}>
+      mode={mode}
+      className={className} theme={theme}
+      selectedKeys={selectedKeys}
+      onSelect={(e) => this.handleMenuSelect(e)}>
       {this.renderMenus(menus)}
     </Menu>
   }

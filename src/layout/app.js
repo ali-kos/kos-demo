@@ -1,9 +1,10 @@
 import React from 'react';
 import { Switch, Route, Router } from 'react-router-dom';
 import createHistory from 'history/createHashHistory';
+import kos from 'kos-core';
 
 import NotMatch from './components/not-match';
-import Layout from './index';
+import LayoutWrapper from './src/wrapper';
 
 const history = createHistory();
 
@@ -12,12 +13,17 @@ const NotMatchPage = {
   Component: NotMatch,
   history
 };
+import model from './model';
 
+
+import './style.less';
+
+@kos.Wrapper({ model })
 class SPApp extends React.PureComponent {
   render() {
     const { pages } = this.props;
 
-    return (<Router history={history} >
+    return (<Router history={history}>
       <Switch>
         {pages.map(page => {
           const { path } = page;
@@ -25,9 +31,9 @@ class SPApp extends React.PureComponent {
           delete pageConfig.Component;
 
           return <Route exact key={path} {...pageConfig}
-            render={(props) => <Layout page={page} history={history} />} />
+            render={(props) => <LayoutWrapper {...this.props} page={page} history={history} />} />
         })}
-        <Route render={props => <Layout page={NotMatchPage} history={history} />} />
+        <Route render={props => <LayoutWrapper {...this.props} page={NotMatchPage} history={history} />} />
       </Switch>
     </Router>);
   }

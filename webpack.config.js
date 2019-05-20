@@ -12,7 +12,7 @@ module.exports = {
     // new MonacoWebpackPlugin({
     //   languages: ['javascript'],
     // }),
-    new CleanWebpackPlugin(['docs']),
+    // new CleanWebpackPlugin(['docs']),
     new HtmlWebpackPlugin({
       template: './index.html',
       title: 'test',
@@ -31,19 +31,10 @@ module.exports = {
   devServer: {
     disableHostCheck: false,
     contentBase: path.join(__dirname, "docs"), //静态文件根目录
-    port: 9090, // 端口
+    port: 7000, // 端口
     host: 'localhost',
     overlay: true,
     compress: true, // 服务器返回浏览器的时候是否启动gzip压缩
-
-    before(app) {
-      app.get('/pc-canvas.html', (_req, res) => {
-        res.end(fs.readFileSync('./pc-canvas.html', 'utf-8'));
-      });
-      app.get('/vs/*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, '.' + req.path));
-      });
-    },
     publicPath: '/'
   },
   output: {
@@ -56,8 +47,8 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
-        // exclude: /node_modules|kos-form\/lib|kos\/lib/,
-        exclude: /node_modules/,
+        exclude: /node_modules|kos-form\/lib|kos\/lib|kos-form-antd\/lib/,
+        // exclude: /node_modules/,
       },
       {
         test: /\.(css|less)$/,
@@ -98,11 +89,12 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', ".css", ".jsx", '.json', '.less', '.scss'],
-    modules: ['node_modules', 'antd/dist'],
+    // modules: ['node_modules', 'antd/dist'],
     alias: {
       'lib': path.resolve('./lib'),
-      // 'kos-core': path.resolve('../kos/lib/index.es.js'),
-      // 'kos-form': path.resolve('../kos-form/lib/index.es.js')
+      'kos-core': path.resolve('../kos/lib/index.es.js'),
+      'kos-form': path.resolve('../kos-form/lib/index.es.js'),
+      'kos-form-antd': path.resolve('../kos-form-antd/lib/index.es.js')
     }
   },
   externals: {

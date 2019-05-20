@@ -18,8 +18,8 @@ export default class Header extends React.PureComponent {
     const { headerMenus, currentHeaderMenus } = this.props;
     return <div className="wrapper">
       <Row>
-        <div className="app-logo"><div className="icon">kos</div></div>
-        <h1 className="app-name"><Link to="/">demo</Link></h1>
+        <div className="app-logo"><div className="icon"></div></div>
+        <h1 className="app-name"><Link to="/">KOS Demo</Link></h1>
         <div className="app-menus">
           <Nav {...this.props} selectedKeys={currentHeaderMenus} menus={headerMenus} onSelect={(selectedKeys) => this.onMenuSelect(selectedKeys)} />
         </div>

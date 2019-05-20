@@ -15,7 +15,7 @@ class LeftmenuLayout extends React.PureComponent {
       </Layout.Header>
 
       <Layout>
-        <Layout.Sider width={200} style={{ background: '#fff' }}>
+        <Layout.Sider width={200} >
           <LeftSider {...this.props} />
         </Layout.Sider>
         <Layout className="app-layout">
